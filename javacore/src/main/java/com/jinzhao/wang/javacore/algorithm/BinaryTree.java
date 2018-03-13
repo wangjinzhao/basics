@@ -126,6 +126,30 @@ public class BinaryTree {
         }
     }
 
+    //广度优先遍历
+    private void floorBreadthFirst(Node node) {
+        ArrayDeque<Node> arrayDeque = new ArrayDeque();
+        arrayDeque.add(node);
+        Node last = node;
+        Node nextLast = node;
+        while (!arrayDeque.isEmpty()) {
+            Node current = arrayDeque.peek();
+            System.out.print(arrayDeque.poll().data + " ");
+            if (current.left != null) {
+                arrayDeque.add(current.left);
+                nextLast = current.left;
+            }
+            if (current.right != null) {
+                arrayDeque.add(current.right);
+                nextLast = current.right;
+            }
+            if (current == last) {
+                System.out.println();
+                last = nextLast;
+            }
+        }
+    }
+
 
     //二叉搜索树 找最近的公共祖先
     //http://blog.csdn.net/beitiandijun/article/details/41970417
@@ -159,9 +183,10 @@ public class BinaryTree {
 
         //binaryTree.inOrder(binaryTree.root);
         //binaryTree.preOrder(binaryTree.root);
-        binaryTree.postOrder(binaryTree.root);
+        //binaryTree.postOrder(binaryTree.root);
         //binaryTree.depthFirst(binaryTree.root);
-        binaryTree.breadthFirst(binaryTree.root);
+        //binaryTree.breadthFirst(binaryTree.root);
+        binaryTree.floorBreadthFirst(binaryTree.root);
     }
 
 }
